@@ -64,7 +64,6 @@ jobs:
         run: |
           mkdir -p ${{ env.UNSYMLINK_DIR }}
           cp -t ${{ env.UNSYMLINK_DIR }} bazel-bin/compiler_uberjar_deploy.jar
-          cp -t ${{ env.UNSYMLINK_DIR }} bazel-bin/*_bundle.jar
 
         # Share the following files with other jobs in this workflow. They can be grabbed using ID
         # `unshaded_compiler`. This is made possible by uploading the files to GitHub controlled
