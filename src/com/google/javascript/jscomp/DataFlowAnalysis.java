@@ -213,12 +213,14 @@ abstract class DataFlowAnalysis<N, L extends LatticeElement> {
    */
   final void analyze() {
     initialize();
+    int a = 0;
     while (!this.workQueue.isEmpty()) {
       DiGraphNode<N, Branch> curNode = this.workQueue.removeFirst();
       LinearFlowState<L> curState = curNode.getAnnotation();
       curState.stepCount++;
-      if (curState.stepCount++ % 5000 == 0) {
+      if (a++ > 5000) {
         System.out.println(curNode);
+        a = 0;
       }
 
       joinInputs(curNode);
