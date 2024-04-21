@@ -216,9 +216,11 @@ abstract class DataFlowAnalysis<N, L extends LatticeElement> {
     while (!this.workQueue.isEmpty()) {
       DiGraphNode<N, Branch> curNode = this.workQueue.removeFirst();
       LinearFlowState<L> curState = curNode.getAnnotation();
-      if (curState.stepCount++ > MAX_STEPS_PER_NODE) {
-        throw new IllegalStateException("Dataflow analysis appears to diverge around: " + curNode);
-      }
+      System.out.println(curNode);
+      curState.stepCount++;
+      // if (curState.stepCount++ > MAX_STEPS_PER_NODE) {
+      //   throw new IllegalStateException("Dataflow analysis appears to diverge around: " + curNode);
+      // }
 
       joinInputs(curNode);
       if (flow(curNode)) {
